@@ -1,8 +1,11 @@
-import { SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from "./types";
+import { SIGN_IN_SUCCESS, SIGN_IN_FAILURE, SIGN_IN_LOADING } from "./types";
 import history from "../history";
 import Streamify from "../api/Streamify";
 
 export const signIn = (credentials) => async (dispatch) => {
+  dispatch({
+    type: SIGN_IN_LOADING,
+  });
   try {
     const response = await Streamify.post(
       "token/",

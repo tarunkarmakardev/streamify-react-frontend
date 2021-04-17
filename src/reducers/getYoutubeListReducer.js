@@ -1,38 +1,34 @@
 import {
-  STREAM_CREATE_SUCCESS,
-  STREAM_CREATE_FAILURE,
-  STREAM_CREATE_LOADING,
-} from "../../actions/types";
-
+  YOUTUBE_SUCCESS,
+  YOUTUBE_FAILURE,
+  YOUTUBE_LOADING,
+} from "../actions/types";
 const initialState = {
   data: null,
-  status: null,
   loading: null,
 };
 
-const streamCreateReducer = (state = initialState, action) => {
+const getYoutubeListReducer = (state = initialState, action) => {
   switch (action.type) {
-    case STREAM_CREATE_SUCCESS:
+    case YOUTUBE_SUCCESS:
       return {
         ...state,
         data: action.payload.data,
-        status: action.payload.status,
         loading: false,
       };
-    case STREAM_CREATE_FAILURE:
+    case YOUTUBE_FAILURE:
       return {
         ...state,
         data: action.payload.data,
-        status: action.payload.status,
         loading: false,
       };
-    case STREAM_CREATE_LOADING:
+    case YOUTUBE_LOADING:
       return {
         ...state,
         data: null,
-        status: null,
         loading: true,
       };
+
     default:
       return {
         ...state,
@@ -40,4 +36,4 @@ const streamCreateReducer = (state = initialState, action) => {
   }
 };
 
-export default streamCreateReducer;
+export default getYoutubeListReducer;

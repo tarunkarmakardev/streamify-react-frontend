@@ -1,7 +1,15 @@
-import { SIGN_UP_SUCCESS, SIGN_UP_FAILURE, CLEAR_SIGNUP_STATE } from "./types";
+import {
+  SIGN_UP_SUCCESS,
+  SIGN_UP_FAILURE,
+  CLEAR_SIGNUP_STATE,
+  SIGN_UP_LOADING,
+} from "./types";
 import Streamify from "../api/Streamify";
 
 export const signUp = (credentials) => async (dispatch) => {
+  dispatch({
+    type: SIGN_UP_LOADING,
+  });
   try {
     const response = await Streamify.post(
       "signup/",

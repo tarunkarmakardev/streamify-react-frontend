@@ -1,4 +1,8 @@
-import { FETCH_LIST_SUCCESS, FETCH_LIST_FAILURE } from "./types";
+import {
+  FETCH_LIST_SUCCESS,
+  FETCH_LIST_FAILURE,
+  FETCH_LIST_LOADING,
+} from "./types";
 import streamify from "../api/Streamify";
 import { refreshToken } from "./refreshToken";
 
@@ -32,6 +36,10 @@ const dispatchFailure = (
 };
 
 export const streamList = (own) => async (dispatch, getState) => {
+  dispatch({
+    type: FETCH_LIST_LOADING,
+  });
+
   if (!getState().signInOutReducer.isSignedIn) {
     const response = await requestStreamListNoAuth();
     dispatchSuccess(dispatch, response);

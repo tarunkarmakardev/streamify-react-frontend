@@ -1,7 +1,8 @@
 import axios from "axios";
+const { REACT_APP_BACKEND_URL } = process.env;
 
 export default axios.create({
-  baseURL: "http://127.0.0.1:8000/streamify/api",
+  baseURL: REACT_APP_BACKEND_URL,
   headers: {
     "Content-type": "application/json",
   },

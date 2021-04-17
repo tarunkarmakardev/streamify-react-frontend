@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 
 import NavLink from "./NavLink";
 import NavButton from "./NavButton";
+import MenuButton from "./MenuButton";
 
 class Navbar extends Component {
+  state = {
+    menuOpen: false,
+  };
   renderNavButtons = () => {
     const { isSignedIn, signOut } = this.props;
     if (!isSignedIn) {
@@ -28,11 +32,12 @@ class Navbar extends Component {
             <NavLink title="Create a stream" link="/streams/create" />
           </>
         ) : null}
-        {/* <NavLink title="YouTube Live" link="/streams/youtube" /> */}
+        <NavLink title="YouTube Live" link="/streams/youtube" />
       </>
     );
   };
   render() {
+    const { menuOpen } = this.state;
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -40,7 +45,12 @@ class Navbar extends Component {
             <Link className="navbar-brand" to="/">
               Streamify
             </Link>
-            <div className="collapse navbar-collapse">
+            <MenuButton
+              onClick={(e) => this.setState({ menuOpen: !menuOpen })}
+            />
+            <div
+              className={`navbar-collapse collapse ${menuOpen ? "show" : ""}`}
+            >
               <ul className="navbar-nav">{this.renderNavLinks()}</ul>
               <ul className="navbar-nav ms-auto me-4">
                 {this.renderNavButtons()}

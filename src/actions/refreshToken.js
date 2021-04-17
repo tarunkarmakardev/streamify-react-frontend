@@ -18,7 +18,7 @@ export const refreshToken = () => async (dispatch) => {
   try {
     if (token) {
       const response = await getRefreshToken(token);
-      console.log(response);
+      // console.log(response);
       dispatch({
         type: TOKEN_REFRESH_SUCCESS,
         payload: response,

@@ -1,0 +1,12 @@
+.modal-open {
+  overflow-y: scroll !important;
+}
+.video-player {
+  height: 500px;
+}
+
+@media screen and (max-width: 425px) {
+  .video-player {
+    height: 200px;
+  }
+}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // Local imports
 import AuthForm from "./AuthForm";
 import AuthModal from "./AuthModal";
+import LoaderFullScreen from "../loader/LoaderFullScreen";
 
 class Signup extends Component {
   onSubmit = (values) => {
@@ -40,6 +41,10 @@ class Signup extends Component {
   };
 
   render() {
+    // console.log(this.props);
+    if (this.props.loading) {
+      return <LoaderFullScreen />;
+    }
     return (
       <AuthModal name="Sign Up to access your streams">
         {this.renderMessage()}

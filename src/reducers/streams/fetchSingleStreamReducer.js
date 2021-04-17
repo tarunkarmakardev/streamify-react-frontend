@@ -1,38 +1,35 @@
 import {
-  STREAM_CREATE_SUCCESS,
-  STREAM_CREATE_FAILURE,
-  STREAM_CREATE_LOADING,
+  FETCH_SINGLE_STREAM_SUCCESS,
+  FETCH_SINGLE_STREAM_FAILURE,
+  FETCH_SINGLE_STREAM_LOADING,
 } from "../../actions/types";
 
 const initialState = {
   data: null,
-  status: null,
-  loading: null,
+  loading: false,
 };
 
-const streamCreateReducer = (state = initialState, action) => {
+const fetchSingleStreamReducer = (state = initialState, action) => {
   switch (action.type) {
-    case STREAM_CREATE_SUCCESS:
+    case FETCH_SINGLE_STREAM_SUCCESS:
       return {
         ...state,
         data: action.payload.data,
-        status: action.payload.status,
         loading: false,
       };
-    case STREAM_CREATE_FAILURE:
+    case FETCH_SINGLE_STREAM_FAILURE:
       return {
         ...state,
         data: action.payload.data,
-        status: action.payload.status,
         loading: false,
       };
-    case STREAM_CREATE_LOADING:
+    case FETCH_SINGLE_STREAM_LOADING:
       return {
         ...state,
         data: null,
-        status: null,
         loading: true,
       };
+
     default:
       return {
         ...state,
@@ -40,4 +37,4 @@ const streamCreateReducer = (state = initialState, action) => {
   }
 };
 
-export default streamCreateReducer;
+export default fetchSingleStreamReducer;

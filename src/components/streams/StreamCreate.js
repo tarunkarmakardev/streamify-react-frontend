@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
 import StreamForm from "./StreamForm";
+import LoaderFullScreen from "../loader/LoaderFullScreen";
 
 class StreamCreate extends Component {
   onSubmit = (formvalues) => {
@@ -8,7 +9,12 @@ class StreamCreate extends Component {
     this.props.streamCreate(formvalues);
   };
   render() {
+    const { loading } = this.props;
     // console.log(this.props);
+
+    if (loading) {
+      return <LoaderFullScreen />;
+    }
 
     return this.props.isSignedIn == null ? (
       <Redirect referer="/streams/create" to="/signin" />

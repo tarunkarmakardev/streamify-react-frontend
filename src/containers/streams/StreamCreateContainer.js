@@ -4,11 +4,11 @@ import { streamCreate } from "../../actions";
 
 const mapStateToProps = ({
   signInOutReducer: { isSignedIn },
-  streamCreate,
+  streamCreateReducer: { loading },
 }) => {
   return {
     isSignedIn,
-    streamCreate,
+    loading,
   };
 };
 

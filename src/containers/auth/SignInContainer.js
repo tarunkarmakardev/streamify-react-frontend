@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
     isSignedIn: state.signInOutReducer.isSignedIn,
     token: state.signInOutReducer.token,
     responseData: state.signInOutReducer.responseData,
+    loading: state.signInOutReducer.loading,
   };
 };
 

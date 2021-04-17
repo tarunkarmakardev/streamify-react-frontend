@@ -3,10 +3,11 @@ import Signup from "../../components/auth/Signup";
 import { signUp, clearSignUpState } from "../../actions";
 
 const mapStateToProps = (state) => {
-  const { signUpResponse, signUpStatus } = state.signUpReducer;
+  const { signUpResponse, signUpStatus, loading } = state.signUpReducer;
   return {
     signUpResponse,
     signUpStatus,
+    loading,
   };
 };
 

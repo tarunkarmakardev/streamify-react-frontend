@@ -1,4 +1,9 @@
-import { SIGN_IN_SUCCESS, SIGN_IN_FAILURE, SIGN_OUT } from "../actions/types";
+import {
+  SIGN_IN_SUCCESS,
+  SIGN_IN_FAILURE,
+  SIGN_IN_LOADING,
+  SIGN_OUT,
+} from "../actions/types";
 
 const access = localStorage.getItem("access");
 const refresh = localStorage.getItem("refresh");
@@ -10,6 +15,7 @@ const initialState = {
     refresh: refresh,
   },
   responseData: null,
+  loading: null,
 };
 
 const signInReducer = (state = initialState, action) => {
@@ -23,12 +29,21 @@ const signInReducer = (state = initialState, action) => {
           refresh: action.payload.data.refresh,
         },
         responseData: action.payload.data,
+        loading: false,
       };
     case SIGN_IN_FAILURE:
       return {
         ...state,
         isSignedIn: false,
         responseData: action.payload.data,
+        loading: false,
+      };
+    case SIGN_IN_LOADING:
+      return {
+        ...state,
+        isSignedIn: false,
+        responseData: null,
+        loading: true,
       };
     case SIGN_OUT:
       return {
@@ -39,6 +54,7 @@ const signInReducer = (state = initialState, action) => {
           refresh: null,
         },
         responseData: null,
+        loading: false,
       };
     default:
       return {

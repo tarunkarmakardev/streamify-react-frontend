@@ -20,7 +20,7 @@ class StreamForm extends Component {
   };
   required = (value) => (value ? undefined : "This field is required!");
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { handleSubmit, onSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
@@ -53,4 +53,5 @@ class StreamForm extends Component {
 
 export default reduxForm({
   form: "createStream",
+  enableReinitialize: true,
 })(StreamForm);

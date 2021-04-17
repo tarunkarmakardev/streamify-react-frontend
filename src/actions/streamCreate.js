@@ -2,7 +2,7 @@ import Streamify from "../api/Streamify";
 import {
   STREAM_CREATE_SUCCESS,
   STREAM_CREATE_FAILURE,
-  STREAM_CREATE_CLEAR,
+  STREAM_CREATE_LOADING,
 } from "./types";
 import { refreshToken } from "./refreshToken";
 import history from "../history";
@@ -34,6 +34,9 @@ const dispatchSuccess = (dispatch, response) => {
 };
 
 export const streamCreate = (values) => async (dispatch, getState) => {
+  dispatch({
+    type: STREAM_CREATE_LOADING,
+  });
   const access = localStorage.getItem("access");
   try {
     if (access) {
@@ -53,16 +56,10 @@ export const streamCreate = (values) => async (dispatch, getState) => {
         );
         dispatchSuccess(dispatch, response);
       } else {
-        dispatchFailure();
+        dispatchFailure(dispatch);
       }
     } catch (err) {
       dispatchFailure(dispatch, err.response);
     }
   }
-};
-
-export const streamCreateClear = () => {
-  return {
-    type: STREAM_CREATE_CLEAR,
-  };
 };
